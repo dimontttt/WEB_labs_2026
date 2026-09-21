@@ -134,3 +134,74 @@ textarea {
   margin-top: calc(var(--space) * 1.5);
   margin-bottom: calc(var(--space) * 1.5);
 }
+/* 5. Картки меню */
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space);
+  margin-top: var(--space);
+}
+
+.card {
+  flex: 1 1 calc(50% - var(--space));
+  min-width: 260px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: calc(var(--space) * 1.25);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.card-text {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.tech-note {
+  margin-top: calc(var(--space) * 2);
+}
+
+/* 6. Контакти та підвал */
+.contacts-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: calc(var(--space) * 1.5);
+}
+
+.contact-item {
+  margin: 8px 0;
+}
+
+.contact-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: calc(var(--space) * 1.5) 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
