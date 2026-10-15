@@ -13,6 +13,7 @@
             <nav class="main-nav" aria-label="Головна навігація">
                 <a class="nav-link" href="#about">Про нас</a>
                 <a class="nav-link" href="#services">Послуги та меню</a>
+                <a class="nav-link" href="#booking">Бронювання</a>
                 <a class="nav-link" href="#contacts">Контакти</a>
             </nav>
         </div>
@@ -85,7 +86,73 @@
                 </div>
             </div>
         </section>
+        <section id="booking" class="section booking-section">
+            <div class="container">
+                <h2 class="section-title">Забронювати столик</h2>
+                <p class="section-text">
+                    Заповніть форму нижче, щоб забронювати столик у головній залі або в тихому куточку коворкінгу.
+                </p>
 
+                <form class="booking-form" action="#" method="post">
+                    <div class="form-field">
+                        <label for="client-name">Ваше ім’я</label>
+                        <input 
+                            id="client-name" 
+                            name="client_name" 
+                            type="text" 
+                            minlength="2" 
+                            placeholder="Олександр" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="client-phone">Номер телефону</label>
+                        <input 
+                            id="client-phone" 
+                            name="client_phone" 
+                            type="tel" 
+                            placeholder="+380..." 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="booking-date">Дата візиту</label>
+                        <input 
+                            id="booking-date" 
+                            name="booking_date" 
+                            type="date" 
+                            min="2026-10-15" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="guests-count">Кількість гостей</label>
+                        <select id="guests-count" name="guests_count" required>
+                            <option value="">Оберіть кількість</option>
+                            <option value="1">1 гість</option>
+                            <option value="2">2 гостей</option>
+                            <option value="3-4">3–4 гостей</option>
+                            <option value="5+">5+ гостей</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="special-wishes">Особливі побажання</label>
+                        <textarea 
+                            id="special-wishes" 
+                            name="special_wishes" 
+                            rows="4" 
+                            placeholder="Столик біля вікна, розетка поруч тощо"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="button submit-btn">Надіслати заявку</button>
+                </form>
+            </div>
+        </section>
         <section id="contacts" class="section contacts-section">
             <div class="container">
                 <h2 class="section-title">Контакти</h2>
