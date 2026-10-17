@@ -1,0 +1,25 @@
+{
+  "name": "web_labs_2026",
+  "version": "1.0.0",
+  "description": "- **Тема:** Побудова макета вебсторінки засобами CSS Flexbox і Grid. Створення, оформлення та базова перевірка HTML-форми.\r - **Мета:** Навчитися свідомо обирати Flexbox або Grid для компонування елементів, керувати напрямком, вирівнюванням і проміжками, а також створити семантичну й доступну форму з вбудованою перевіркою без використання JavaScript.\r - **Опис:** Вебсайт локальної міської кав'ярні «Доброго дня!».",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "sass scss/main.scss:css/styles.css --no-source-map",
+    "watch:css": "sass --watch scss/main.scss:css/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimontttt/WEB_labs_2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dimontttt/WEB_labs_2026/issues"
+  },
+  "homepage": "https://github.com/dimontttt/WEB_labs_2026#readme",
+  "devDependencies": {
+    "sass": "^1.105.2"
+  }
+}
