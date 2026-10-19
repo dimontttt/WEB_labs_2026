@@ -1,0 +1,291 @@
+// Підключення модулів із простором імен
+@use "variables" as v;
+@use "mixins" as m;
+
+/* 1. Скидання та базові стилі */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: v.$color-text;
+  background-color: v.$color-background;
+  overflow-x: hidden; // Захист від горизонтальної смуги прокручування на 360px
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: v.$radius;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: v.$space;
+}
+
+/* 2. Шапка сайту та навігація */
+.site-header {
+  background-color: v.$color-surface;
+  border-bottom: 1px solid v.$color-border;
+  padding: calc(v.$space * 1.5) 0;
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: v.$space;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.8rem;
+  color: v.$color-primary;
+  text-align: center;
+
+  // На екранах від 768px збільшуємо заголовок
+  @include m.respond-from(v.$bp-tablet) {
+    font-size: 2.2rem;
+  }
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(v.$space * 0.75);
+  flex-wrap: wrap; // Перенесення посилань на екранах 360px
+
+  @include m.respond-from(v.$bp-tablet) {
+    gap: calc(v.$space * 1.25);
+    flex-wrap: nowrap;
+  }
+
+  .nav-link {
+    color: v.$color-text;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: calc(v.$radius / 2);
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    // Вкладені псевдокласи з амперсандом &
+    &:hover {
+      color: v.$color-primary;
+      background-color: v.$color-background;
+    }
+
+    &:focus-visible {
+      outline: 3px solid v.$color-focus;
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* 3. Секції та кнопка дії */
+.section {
+  padding-top: calc(v.$space * 2);
+  padding-bottom: calc(v.$space * 2);
+
+  @include m.respond-from(v.$bp-tablet) {
+    padding-top: calc(v.$space * 3);
+    padding-bottom: calc(v.$space * 3);
+  }
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: v.$space;
+  color: v.$color-primary;
+
+  @include m.respond-from(v.$bp-tablet) {
+    font-size: 1.8rem;
+  }
+}
+
+.section-text {
+  margin-top: 0;
+  margin-bottom: v.$space;
+  color: v.$color-text;
+}
+
+.button {
+  display: inline-block;
+  background-color: v.$color-primary;
+  color: #ffffff;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  border-radius: v.$radius;
+  margin-block: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: v.$color-primary-hover;
+  }
+
+  &:focus-visible {
+    outline: 3px solid v.$color-focus;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.image-wrapper {
+  margin-block: calc(v.$space * 1.5);
+}
+
+/* 4. Картки меню (Mobile-First адаптивність) */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr; // Базово: 1 колонка на смартфонах
+  gap: v.$space;
+  margin-top: v.$space;
+
+  // Від планшета (768px): 2 колонки
+  @include m.respond-from(v.$bp-tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+  padding: calc(v.$space * 1.25);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    color: v.$color-primary;
+  }
+
+  .card-text {
+    margin: 0;
+    color: v.$color-text-muted;
+    font-size: 0.95rem;
+  }
+}
+
+.tech-note {
+  margin-top: calc(v.$space * 2);
+}
+
+/* 5. Форма онлайн-бронювання */
+.booking-section {
+  border-top: 1px solid v.$color-border;
+}
+
+.booking-form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 560px;
+  margin-top: 1.25rem;
+
+  .form-field {
+    display: grid;
+    gap: 0.4rem;
+
+    label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: v.$color-text;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid v.$color-border;
+      border-radius: calc(v.$radius / 2);
+      background-color: v.$color-surface;
+      color: v.$color-text;
+
+      &:focus-visible {
+        outline: 3px solid v.$color-focus;
+        outline-offset: 1px;
+      }
+
+      &:focus:invalid {
+        border-color: v.$color-error;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  .submit-btn {
+    width: 100%; // Кнопка на всю ширину на мобільних
+
+    @include m.respond-from(v.$bp-tablet) {
+      width: auto;
+      justify-self: start; // На планшетах і ПК вирівнюється за початком
+    }
+  }
+}
+
+/* 6. Контакти та підвал */
+.contacts-card {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+  padding: calc(v.$space * 1.5);
+
+  .contact-item {
+    margin: 8px 0;
+  }
+
+  .contact-link {
+    color: v.$color-primary;
+    text-decoration: underline;
+
+    &:focus-visible {
+      outline: 2px solid v.$color-focus;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.site-footer {
+  background-color: v.$color-surface;
+  border-top: 1px solid v.$color-border;
+  padding: calc(v.$space * 1.5) 0;
+  text-align: center;
+  color: v.$color-text-muted;
+  font-size: 0.9rem;
+}

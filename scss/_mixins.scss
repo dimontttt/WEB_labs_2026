@@ -1,0 +1,6 @@
+// Параметризованный миксин для адаптивных медиа-запросов
+@mixin respond-from($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
