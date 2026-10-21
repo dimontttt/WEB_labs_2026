@@ -37,7 +37,7 @@
 
 ### Посилання на Pull Request
 
-- **Pull Request:** [lab-5-js-dom PR]()
+- **Pull Request:** [lab-5-js-dom PR](https://github.com/dimontttt/WEB_labs_2026/pull/7)
 
 ### Висновок
 
