@@ -1,8 +1,20 @@
-// Підключення модулів із простором імен
-@use "variables" as v;
-@use "mixins" as m;
+@charset "UTF-8";
 
-/* 1. Скидання та базові стилі */
+// 1. Змінні проєкту
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+$color-bg: #fbf9f6;
+$color-text: #2b2320;
+$color-muted: #5e5b53;
+$color-primary: #8d5b4c;
+$color-primary-hover: #6f4235;
+$color-border: #e8e2dc;
+$color-card-bg: #ffffff;
+$color-focus: #2563eb;
+$color-danger: #dc2626;
+
+$breakpoint-md: 48rem; // 768px
+
+// 2. Скидання та базові стилі
 *,
 *::before,
 *::after {
@@ -11,18 +23,18 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: $font-family;
   line-height: 1.6;
-  color: v.$color-text;
-  background-color: v.$color-background;
-  overflow-x: hidden; // Захист від горизонтальної смуги прокручування на 360px
+  color: $color-text;
+  background-color: $color-bg;
+  overflow-x: hidden;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: v.$radius;
+  border-radius: 12px;
 }
 
 button,
@@ -36,15 +48,15 @@ textarea {
   width: 100%;
   max-width: 900px;
   margin-inline: auto;
-  padding-inline: v.$space;
+  padding-inline: 16px;
 }
 
-/* 2. Шапка сайту та навігація */
+// 3. Шапка сайту та навігація (Сценарій 1: Мобільне меню)
 .site-header {
-  background-color: v.$color-surface;
-  border-bottom: 1px solid v.$color-border;
-  padding: calc(v.$space * 1.5) 0;
-  text-align: center;
+  background-color: $color-card-bg;
+  border-bottom: 1px solid $color-border;
+  padding: 20px 0;
+  position: relative;
 }
 
 .header-container {
@@ -52,160 +64,272 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: v.$space;
+  gap: 16px;
 }
 
 .site-title {
   margin: 0;
   font-size: 1.8rem;
-  color: v.$color-primary;
+  color: $color-primary;
   text-align: center;
 
-  // На екранах від 768px збільшуємо заголовок
-  @include m.respond-from(v.$bp-tablet) {
+  @media (min-width: $breakpoint-md) {
     font-size: 2.2rem;
   }
 }
 
-.main-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: calc(v.$space * 0.75);
-  flex-wrap: wrap; // Перенесення посилань на екранах 360px
+// Кнопка мобільного меню
+.menu-toggle {
+  display: inline-block;
+  background-color: transparent;
+  color: $color-primary;
+  border: 1px solid $color-primary;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
 
-  @include m.respond-from(v.$bp-tablet) {
-    gap: calc(v.$space * 1.25);
+  &:hover {
+    background-color: $color-primary;
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-focus;
+    outline-offset: 2px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+// Меню навігації та стан відкриття
+.main-nav {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+
+  &.is-open {
+    display: flex;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
     flex-wrap: nowrap;
+    width: auto;
   }
 
   .nav-link {
-    color: v.$color-text;
+    color: $color-text;
     text-decoration: none;
     font-weight: 600;
     padding: 6px 14px;
-    border-radius: calc(v.$radius / 2);
+    border-radius: 6px;
     transition: background-color 0.2s ease, color 0.2s ease;
 
-    // Вкладені псевдокласи з амперсандом &
     &:hover {
-      color: v.$color-primary;
-      background-color: v.$color-background;
+      color: $color-primary;
+      background-color: $color-bg;
     }
 
     &:focus-visible {
-      outline: 3px solid v.$color-focus;
+      outline: 3px solid $color-focus;
       outline-offset: 2px;
     }
   }
 }
 
-/* 3. Секції та кнопка дії */
+// 4. Секції та кнопки дії
 .section {
-  padding-top: calc(v.$space * 2);
-  padding-bottom: calc(v.$space * 2);
+  padding-top: 32px;
+  padding-bottom: 32px;
 
-  @include m.respond-from(v.$bp-tablet) {
-    padding-top: calc(v.$space * 3);
-    padding-bottom: calc(v.$space * 3);
+  @media (min-width: $breakpoint-md) {
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 }
 
 .section-title {
   font-size: 1.5rem;
   margin-top: 0;
-  margin-bottom: v.$space;
-  color: v.$color-primary;
+  margin-bottom: 16px;
+  color: $color-primary;
 
-  @include m.respond-from(v.$bp-tablet) {
+  @media (min-width: $breakpoint-md) {
     font-size: 1.8rem;
   }
 }
 
 .section-text {
   margin-top: 0;
-  margin-bottom: v.$space;
-  color: v.$color-text;
+  margin-bottom: 16px;
+  color: $color-text;
 }
 
 .button {
   display: inline-block;
-  background-color: v.$color-primary;
+  background-color: $color-primary;
   color: #ffffff;
   padding: 12px 24px;
   text-decoration: none;
   font-weight: 600;
   border: none;
-  border-radius: v.$radius;
+  border-radius: 12px;
   margin-block: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
 
   &:hover {
-    background-color: v.$color-primary-hover;
+    background-color: $color-primary-hover;
   }
 
   &:focus-visible {
-    outline: 3px solid v.$color-focus;
+    outline: 3px solid $color-focus;
     outline-offset: 2px;
   }
 
   &:active {
     transform: translateY(1px);
   }
+
+  &-secondary {
+    background-color: $color-border;
+    color: $color-text;
+    margin-right: 8px;
+
+    &:hover {
+      background-color: darken(#e8e2dc, 5%);
+    }
+  }
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+// Стан приховування контенту (Сценарій 2: Показати більше)
+.is-hidden {
+  display: none !important;
+}
+
+.extra-details {
+  background-color: #f3eee9;
+  border-left: 4px solid $color-primary;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .image-wrapper {
-  margin-block: calc(v.$space * 1.5);
+  margin-block: 24px;
 }
 
-/* 4. Картки меню (Mobile-First адаптивність) */
+// 5. Картки меню (Сценарій 3: Обране)
 .cards-grid {
   display: grid;
-  grid-template-columns: 1fr; // Базово: 1 колонка на смартфонах
-  gap: v.$space;
-  margin-top: v.$space;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
 
-  // Від планшета (768px): 2 колонки
-  @include m.respond-from(v.$bp-tablet) {
+  @media (min-width: $breakpoint-md) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 .card {
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
-  border-radius: v.$radius;
-  padding: calc(v.$space * 1.25);
+  background-color: $color-card-bg;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
   }
 
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
   .card-title {
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     font-size: 1.25rem;
-    color: v.$color-primary;
+    color: $color-primary;
   }
 
   .card-text {
     margin: 0;
-    color: v.$color-text-muted;
+    color: $color-muted;
     font-size: 0.95rem;
+  }
+
+  // Кнопка обраного
+  .favorite-button {
+    background-color: $color-bg;
+    border: 1px solid $color-primary;
+    color: $color-primary;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: $color-border;
+    }
+
+    &:focus-visible {
+      outline: 3px solid $color-focus;
+      outline-offset: 2px;
+    }
+
+    &.is-active {
+      background-color: $color-primary;
+      color: #ffffff;
+      border-color: $color-primary;
+    }
+  }
+
+  // Візуальне виділення картки, якщо кнопка всередині неї має клас .is-active
+  &:has(.favorite-button.is-active) {
+    border-color: $color-primary;
+    box-shadow: 0 4px 10px rgba(141, 91, 76, 0.15);
   }
 }
 
 .tech-note {
-  margin-top: calc(v.$space * 2);
+  margin-top: 32px;
 }
 
-/* 5. Форма онлайн-бронювання */
+// 6. Форма онлайн-бронювання
 .booking-section {
-  border-top: 1px solid v.$color-border;
+  border-top: 1px solid $color-border;
 }
 
 .booking-form {
@@ -221,7 +345,7 @@ textarea {
     label {
       font-weight: 600;
       font-size: 0.95rem;
-      color: v.$color-text;
+      color: $color-text;
     }
 
     input,
@@ -229,18 +353,18 @@ textarea {
     textarea {
       width: 100%;
       padding: 0.7rem 0.9rem;
-      border: 1px solid v.$color-border;
-      border-radius: calc(v.$radius / 2);
-      background-color: v.$color-surface;
-      color: v.$color-text;
+      border: 1px solid $color-border;
+      border-radius: 6px;
+      background-color: $color-card-bg;
+      color: $color-text;
 
       &:focus-visible {
-        outline: 3px solid v.$color-focus;
+        outline: 3px solid $color-focus;
         outline-offset: 1px;
       }
 
       &:focus:invalid {
-        border-color: v.$color-error;
+        border-color: $color-danger;
       }
     }
 
@@ -250,42 +374,42 @@ textarea {
   }
 
   .submit-btn {
-    width: 100%; // Кнопка на всю ширину на мобільних
+    width: 100%;
 
-    @include m.respond-from(v.$bp-tablet) {
+    @media (min-width: $breakpoint-md) {
       width: auto;
-      justify-self: start; // На планшетах і ПК вирівнюється за початком
+      justify-self: start;
     }
   }
 }
 
-/* 6. Контакти та підвал */
+// 7. Контакти та підвал
 .contacts-card {
-  background-color: v.$color-surface;
-  border: 1px solid v.$color-border;
-  border-radius: v.$radius;
-  padding: calc(v.$space * 1.5);
+  background-color: $color-card-bg;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: 24px;
 
   .contact-item {
     margin: 8px 0;
   }
 
   .contact-link {
-    color: v.$color-primary;
+    color: $color-primary;
     text-decoration: underline;
 
     &:focus-visible {
-      outline: 2px solid v.$color-focus;
+      outline: 2px solid $color-focus;
       outline-offset: 2px;
     }
   }
 }
 
 .site-footer {
-  background-color: v.$color-surface;
-  border-top: 1px solid v.$color-border;
-  padding: calc(v.$space * 1.5) 0;
+  background-color: $color-card-bg;
+  border-top: 1px solid $color-border;
+  padding: 24px 0;
   text-align: center;
-  color: v.$color-text-muted;
+  color: $color-muted;
   font-size: 0.9rem;
 }
