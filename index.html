@@ -6,7 +6,7 @@
     <title>Кав'ярня «Доброго дня!»</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Підключення JavaScript з атрибутом defer -->
-    <script src="js/main.js" defer></script>
+    <script src="js/scripts.js" defer></script>
 </head>
 <body>
     <header class="site-header">
@@ -89,68 +89,28 @@
                     У нашому закладі ви знайдете як звичну класику, так і сучасні експерименти з альтернативними способами заварювання:
                 </p>
                 
-                <!-- Сценарій 3: Кнопка додавання в обране у кожній картці -->
-                <div class="cards-grid">
-                    <article class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Класичний еспресо-бар</h3>
-                            <button 
-                                class="favorite-button" 
-                                type="button" 
-                                aria-pressed="false"
-                                title="Додати напій до списку улюблених"
-                            >
-                                Додати в обране
-                            </button>
-                        </div>
-                        <p class="card-text">Еспресо з щільним тілом, американо, фільтр-кава дня, а також капучино, лате та флет-вайт із шовковистою глянцевою пінкою.</p>
-                    </article>
+                <!-- Елементи керування: пошук і фільтр категорій -->
+                <div class="catalog-controls">
+                    <label for="item-search">Пошук</label>
+                    <input id="item-search" type="search" placeholder="Введіть назву або опис">
 
-                    <article class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Альтернативні методи</h3>
-                            <button 
-                                class="favorite-button" 
-                                type="button" 
-                                aria-pressed="false"
-                                title="Додати напій до списку улюблених"
-                            >
-                                Додати в обране
-                            </button>
-                        </div>
-                        <p class="card-text">Ручне приготування вибіркових моносортів методом V60, аеропрес і клейвер для тих, хто цінує тонкі дескриптори зерна.</p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Пекарня та авторські чаї</h3>
-                            <button 
-                                class="favorite-button" 
-                                type="button" 
-                                aria-pressed="false"
-                                title="Додати напій до списку улюблених"
-                            >
-                                Додати в обране
-                            </button>
-                        </div>
-                        <p class="card-text">Хрусткі свіжі круасани з солодкими й солоними начинками, десерти власного виробництва, натуральне какао та сезонні зігрівальні чаї на травах.</p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Кава додому та зерно to-go</h3>
-                            <button 
-                                class="favorite-button" 
-                                type="button" 
-                                aria-pressed="false"
-                                title="Додати напій до списку улюблених"
-                            >
-                                Додати в обране
-                            </button>
-                        </div>
-                        <p class="card-text">Допоможемо вибрати пачку свіжого зерна під ваш смак і безкоштовно змелемо його під домашню турку, фільтр чи гейзерну кавоварку.</p>
-                    </article>
+                    <label for="category-filter">Категорія</label>
+                    <select id="category-filter">
+                        <option value="all">Усі</option>
+                        <option value="coffee">Кава</option>
+                        <option value="tea">Чай та какао</option>
+                        <option value="pastry">Пекарня та десерти</option>
+                    </select>
                 </div>
+
+                <!-- Лічильник результатів -->
+                <p id="results-count" aria-live="polite"></p>
+
+                <!-- Контейнер для карток (наповнюється через JavaScript) -->
+                <div id="item-grid" class="cards-grid"></div>
+
+                <!-- Повідомлення про відсутність результатів -->
+                <p id="empty-message" hidden>Нічого не знайдено.</p>
 
                 <p class="section-text tech-note">
                     Ми приділяємо велику увагу деталям екстракції: бар оснащено професійною двогруповою італійською еспресо-машиною 
