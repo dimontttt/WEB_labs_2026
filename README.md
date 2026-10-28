@@ -43,10 +43,10 @@
 
 ## Скриншоти виконання
 
-1. Усі картки: `![Усі картки](images/screen-all.png)`
-2. Результат пошуку: `![Результат пошуку](images/screen-search.png)`
-3. Порожній результат: `![Нічого не знайдено](images/screen-empty.png)`
+1. Усі картки: ![Усі картки](images/screen-all.png)
+2. Результат пошуку: ![Результат пошуку](images/screen-search.png)
+3. Порожній результат: ![Нічого не знайдено](images/screen-empty.png)
 
 ## Посилання на Pull Request
 
-[Вставте посилання на ваш Pull Request на GitHub]
+- **Pull Request:** [lab-6-dynamic-dom PR]()
