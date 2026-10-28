@@ -5,12 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кав'ярня «Доброго дня!»</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Підключення JavaScript з атрибутом defer -->
+    <script src="js/scripts.js" defer></script>
 </head>
 <body>
     <header class="site-header">
         <div class="container header-container">
             <h1 class="site-title">Кав'ярня «Доброго дня!»</h1>
-            <nav class="main-nav" aria-label="Головна навігація">
+            
+            <!-- Сценарій 1: Кнопка мобільного меню -->
+            <button 
+                class="menu-toggle" 
+                type="button" 
+                aria-expanded="false" 
+                aria-controls="main-navigation"
+                aria-label="Перемкнути навігаційне меню"
+            >
+                Меню сайту
+            </button>
+
+            <nav id="main-navigation" class="main-nav" aria-label="Головна навігація">
                 <a class="nav-link" href="#about">Про нас</a>
                 <a class="nav-link" href="#services">Послуги та меню</a>
                 <a class="nav-link" href="#booking">Бронювання</a>
@@ -35,12 +49,33 @@
                     розкривався багатий букет смаків — від стиглих ягідних і цитрусових нот до оксамитового 
                     шоколадно-горіхового посмаку.
                 </p>
-                <p class="section-text">
-                    Для гостей ми облаштували дві різні за настроєм локації: відкриту світлу залу з великими 
-                    панорамними вікнами та барною стійкою з масиву дуба для швидких зустрічей, а також тихий 
-                    камерний коворкінг-куточок із м'якими кріслами, розетками біля столів і надійним Wi-Fi.
-                </p>
-                <a href="#services" class="button">Ознайомитися з меню</a>
+
+                <!-- Сценарій 2: Прихований додатковий блок -->
+                <div id="extra-about" class="extra-details is-hidden">
+                    <p class="section-text">
+                        Для гостей ми облаштували дві різні за настроєм локації: відкриту світлу залу з великими 
+                        панорамними вікнами та барною стійкою з масиву дуба для швидких зустрічей, а також тихий 
+                        камерний коворкінг-куточок із м'якими кріслами, розетками біля столів і надійним Wi-Fi.
+                    </p>
+                    <p class="section-text">
+                        У теплу пору року у дворі діє затишна тераса, оточена живими рослинами, де можна насолоджуватися 
+                        холодним колд-брю під відкритим небом.
+                    </p>
+                </div>
+
+                <div class="about-actions">
+                    <!-- Сценарій 2: Кнопка перемикання блоку -->
+                    <button 
+                        class="button button-secondary details-toggle" 
+                        type="button" 
+                        aria-expanded="false" 
+                        aria-controls="extra-about"
+                    >
+                        Показати більше
+                    </button>
+                    <a href="#services" class="button">Ознайомитися з меню</a>
+                </div>
+
                 <div class="image-wrapper">
                     <img src="images/cafe.jfif" alt="Затишний інтер'єр кав'ярні з дерев'яними столиками, теплим освітленням і зеленими рослинами">
                 </div>
@@ -54,27 +89,28 @@
                     У нашому закладі ви знайдете як звичну класику, так і сучасні експерименти з альтернативними способами заварювання:
                 </p>
                 
-                <div class="cards-grid">
-                    <article class="card">
-                        <h3 class="card-title">Класичний еспресо-бар</h3>
-                        <p class="card-text">Еспресо з щільним тілом, американо, фільтр-кава дня, а також капучино, лате та флет-вайт із шовковистою глянцевою пінкою.</p>
-                    </article>
+                <!-- Елементи керування: пошук і фільтр категорій -->
+                <div class="catalog-controls">
+                    <label for="item-search">Пошук</label>
+                    <input id="item-search" type="search" placeholder="Введіть назву або опис">
 
-                    <article class="card">
-                        <h3 class="card-title">Альтернативні методи</h3>
-                        <p class="card-text">Ручне приготування вибіркових моносортів методом V60, аеропрес і клейвер для тих, хто цінує тонкі дескриптори зерна.</p>
-                    </article>
-
-                    <article class="card">
-                        <h3 class="card-title">Пекарня та авторські чаї</h3>
-                        <p class="card-text">Хрусткі свіжі круасани з солодкими й солоними начинками, десерти власного виробництва, натуральне какао та сезонні зігрівальні чаї на травах.</p>
-                    </article>
-
-                    <article class="card">
-                        <h3 class="card-title">Кава додому та зерно to-go</h3>
-                        <p class="card-text">Допоможемо вибрати пачку свіжого зерна під ваш смак і безкоштовно змелемо його під домашню турку, фільтр чи гейзерну кавоварку.</p>
-                    </article>
+                    <label for="category-filter">Категорія</label>
+                    <select id="category-filter">
+                        <option value="all">Усі</option>
+                        <option value="coffee">Кава</option>
+                        <option value="tea">Чай та какао</option>
+                        <option value="pastry">Пекарня та десерти</option>
+                    </select>
                 </div>
+
+                <!-- Лічильник результатів -->
+                <p id="results-count" aria-live="polite"></p>
+
+                <!-- Контейнер для карток (наповнюється через JavaScript) -->
+                <div id="item-grid" class="cards-grid"></div>
+
+                <!-- Повідомлення про відсутність результатів -->
+                <p id="empty-message" hidden>Нічого не знайдено.</p>
 
                 <p class="section-text tech-note">
                     Ми приділяємо велику увагу деталям екстракції: бар оснащено професійною двогруповою італійською еспресо-машиною 
@@ -86,6 +122,7 @@
                 </div>
             </div>
         </section>
+
         <section id="booking" class="section booking-section">
             <div class="container">
                 <h2 class="section-title">Забронювати столик</h2>
@@ -153,6 +190,7 @@
                 </form>
             </div>
         </section>
+
         <section id="contacts" class="section contacts-section">
             <div class="container">
                 <h2 class="section-title">Контакти</h2>
