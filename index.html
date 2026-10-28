@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кав'ярня «Доброго дня!»</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Підключення JavaScript з атрибутом defer -->
-    <script src="js/scripts.js" defer></script>
+    <!-- Підключення головного JS-модуля (Лабораторна робота № 7) -->
+    <script type="module" src="js/main.js"></script>
 </head>
 <body>
     <header class="site-header">
         <div class="container header-container">
             <h1 class="site-title">Кав'ярня «Доброго дня!»</h1>
             
-            <!-- Сценарій 1: Кнопка мобільного меню -->
             <button 
                 class="menu-toggle" 
                 type="button" 
@@ -50,7 +49,6 @@
                     шоколадно-горіхового посмаку.
                 </p>
 
-                <!-- Сценарій 2: Прихований додатковий блок -->
                 <div id="extra-about" class="extra-details is-hidden">
                     <p class="section-text">
                         Для гостей ми облаштували дві різні за настроєм локації: відкриту світлу залу з великими 
@@ -64,7 +62,6 @@
                 </div>
 
                 <div class="about-actions">
-                    <!-- Сценарій 2: Кнопка перемикання блоку -->
                     <button 
                         class="button button-secondary details-toggle" 
                         type="button" 
@@ -89,7 +86,7 @@
                     У нашому закладі ви знайдете як звичну класику, так і сучасні експерименти з альтернативними способами заварювання:
                 </p>
                 
-                <!-- Елементи керування: пошук і фільтр категорій -->
+                <!-- Блок фільтрації та пошуку -->
                 <div class="catalog-controls">
                     <label for="item-search">Пошук</label>
                     <input id="item-search" type="search" placeholder="Введіть назву або опис">
@@ -103,13 +100,20 @@
                     </select>
                 </div>
 
-                <!-- Лічильник результатів -->
+                <!-- Статуси завантаження та помилки (Лабораторна робота № 7) -->
+                <p id="load-status" role="status" class="status-message"></p>
+                <p id="load-error" role="alert" class="error-message" hidden></p>
+                <button id="retry-load" type="button" class="button button-secondary" hidden>
+                    Спробувати ще раз
+                </button>
+
+                <!-- Лічильник знайдених елементів -->
                 <p id="results-count" aria-live="polite"></p>
 
-                <!-- Контейнер для карток (наповнюється через JavaScript) -->
+                <!-- Контейнер для динамічного виведення карток -->
                 <div id="item-grid" class="cards-grid"></div>
 
-                <!-- Повідомлення про відсутність результатів -->
+                <!-- Повідомлення про порожній результат -->
                 <p id="empty-message" hidden>Нічого не знайдено.</p>
 
                 <p class="section-text tech-note">
