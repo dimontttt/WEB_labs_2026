@@ -417,3 +417,42 @@ textarea {
   color: #5e5b53;
   font-size: 0.9rem;
 }
+
+/* ==========================================
+   Стилі для Лабораторної роботи № 6
+   ========================================== */
+
+.catalog-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.catalog-controls label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.catalog-controls input,
+.catalog-controls select {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  min-width: 220px;
+}
+
+#results-count {
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #555;
+}
+
+#empty-message {
+  text-align: center;
+  font-size: 1.15rem;
+  color: #777;
+  padding: 2.5rem 1rem;
+}
