@@ -1,5 +1,9 @@
+import { loadItems } from "./api.js";
+import { filterItems, renderItems } from "./catalog.js";
+import { debounce } from "./utils.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Мобільне меню (бургер)
+  // 1. Інтерфейсні елементи з попередніх робіт (меню та деталі)
   const menuToggle = document.querySelector(".menu-toggle");
   const mainNav = document.querySelector("#main-navigation");
 
@@ -11,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 2. Розгортання та приховування додаткового опису ("Показати більше")
   const detailsToggle = document.querySelector(".details-toggle");
   const extraDetails = document.querySelector("#extra-about");
 
@@ -23,14 +26,73 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Незалежний перемикач "В обране" для кожної картки меню
-  const favoriteButtons = document.querySelectorAll(".favorite-button");
+  // 2. DOM-елементи каталогу та станів
+  const grid = document.querySelector("#item-grid");
+  const searchInput = document.querySelector("#item-search");
+  const categorySelect = document.querySelector("#category-filter");
+  const resultsCount = document.querySelector("#results-count");
+  const emptyMessage = document.querySelector("#empty-message");
 
-  favoriteButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const isActive = btn.classList.toggle("is-active");
-      btn.textContent = isActive ? "В обраному ★" : "Додати в обране";
-      btn.setAttribute("aria-pressed", String(isActive));
-    });
-  });
+  const statusMessage = document.querySelector("#load-status");
+  const errorMessage = document.querySelector("#load-error");
+  const retryButton = document.querySelector("#retry-load");
+
+  let items = [];
+
+  /**
+   * Оновлення відображення каталогу за поточними значеннями фільтрів
+   */
+  function updateView() {
+    const filtered = filterItems(items, searchInput.value, categorySelect.value);
+    renderItems(filtered, grid, resultsCount, emptyMessage);
+  }
+
+  /**
+   * Асинхронне завантаження каталогу та керування станами інтерфейсу
+   */
+  async function init() {
+    searchInput.disabled = true;
+    categorySelect.disabled = true;
+    retryButton.disabled = true;
+    retryButton.hidden = true;
+    errorMessage.hidden = true;
+
+    statusMessage.textContent = "Завантаження…";
+    grid.setAttribute("aria-busy", "true");
+    grid.replaceChildren();
+    resultsCount.textContent = "";
+    emptyMessage.hidden = true;
+
+    let loaded = false;
+
+    try {
+      items = await loadItems();
+      updateView();
+      loaded = true;
+    } catch (error) {
+      items = [];
+      errorMessage.textContent = "Не вдалося завантажити каталог. Спробуйте ще раз.";
+      errorMessage.hidden = false;
+      retryButton.hidden = false;
+      console.error(error);
+    } finally {
+      statusMessage.textContent = "";
+      grid.setAttribute("aria-busy", "false");
+      searchInput.disabled = !loaded;
+      categorySelect.disabled = !loaded;
+      retryButton.disabled = false;
+      if (loaded) {
+        retryButton.hidden = true;
+    }
+    }
+  }
+
+  // Реєстрація слухачів подій (виконується лише один раз)
+  const debouncedUpdateView = debounce(updateView, 300);
+  searchInput.addEventListener("input", debouncedUpdateView);
+  categorySelect.addEventListener("change", updateView);
+  retryButton.addEventListener("click", init);
+
+  // Первинний запуск
+  init();
 });
