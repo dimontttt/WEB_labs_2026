@@ -49,4 +49,4 @@
 
 ## Посилання на Pull Request
 
-- **Pull Request:** [lab-6-dynamic-dom PR]()
+- **Pull Request:** [lab-6-dynamic-dom PR](https://github.com/dimontttt/WEB_labs_2026/pull/8)
