@@ -456,3 +456,7 @@ textarea {
   color: #777;
   padding: 2.5rem 1rem;
 }
+
+[hidden] {
+  display: none !important;
+}

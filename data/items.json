@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Класичний еспресо-бар",
+    "category": "coffee",
+    "description": "Еспресо з щільним тілом, американо, фільтр-кава дня, а також капучино, лате та флет-вайт.",
+    "image": "images/cup of coffee.png"
+  },
+  {
+    "id": 2,
+    "title": "Альтернативні методи",
+    "category": "coffee",
+    "description": "Ручне приготування вибіркових моносортів методом V60, аеропрес і клейвер.",
+    "image": "images/cup of coffee.png"
+  },
+  {
+    "id": 3,
+    "title": "Фільтр-кава дня",
+    "category": "coffee",
+    "description": "Світле обсмаження зі смаковими дескрипторами стиглих цитрусів та соковитих ягід.",
+    "image": "images/cup of coffee.png"
+  },
+  {
+    "id": 4,
+    "title": "Трав'яні карпатські чаї",
+    "category": "tea",
+    "description": "Натуральні карпатські трав'яні збори з чебрецем, м'ятою та пелюстками квітів.",
+    "image": "images/cup of coffee.png"
+  },
+  {
+    "id": 5,
+    "title": "Какао на цільному молоці",
+    "category": "tea",
+    "description": "Натуральне густе какао без додавання штучних підсолоджувачів.",
+    "image": "images/cup of coffee.png"
+  },
+  {
+    "id": 6,
+    "title": "Пекарня та десерти",
+    "category": "pastry",
+    "description": "Хрусткі свіжі круасани з солодкими й солоними начинками та десерти власного виробництва.",
+    "image": "images/cup of coffee.png"
+  },
+  {
+    "id": 7,
+    "title": "Баскський чизкейк",
+    "category": "pastry",
+    "description": "Ніжний запечений сирний десерт із карамелізованою скоринкою від шефа.",
+    "image": "images/cup of coffee.png"
+  },
+  {
+    "id": 8,
+    "title": "Кава додому та зерно to-go",
+    "category": "coffee",
+    "description": "Свіже обсмажене зерно під ваш смак із безкоштовним помелом під турку або фільтр.",
+    "image": "images/cup of coffee.png"
+  }
+]
