@@ -1,6 +1,7 @@
 import { loadItems } from "./api.js";
 import { filterItems, renderItems } from "./catalog.js";
 import { debounce } from "./utils.js";
+import { initUserItems } from "./userItems.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Інтерфейсні елементи з попередніх робіт (меню та деталі)
@@ -95,4 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Первинний запуск
   init();
+  // Ініціалізація власних записів (№ 8)
+  initUserItems();
 });
