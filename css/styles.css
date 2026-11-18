@@ -1,6 +1,4 @@
 @charset "UTF-8";
-
-/* 1. Скидання та базові стилі */
 *,
 *::before,
 *::after {
@@ -37,7 +35,6 @@ textarea {
   padding-inline: 16px;
 }
 
-/* 2. Шапка сайту та навігація */
 .site-header {
   background-color: #ffffff;
   border-bottom: 1px solid #e8e2dc;
@@ -59,14 +56,12 @@ textarea {
   color: #8d5b4c;
   text-align: center;
 }
-
 @media (min-width: 48rem) {
   .site-title {
     font-size: 2.2rem;
   }
 }
 
-/* Кнопка бургера для мобільних пристроїв */
 .menu-toggle {
   display: inline-block;
   background-color: transparent;
@@ -79,18 +74,20 @@ textarea {
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
 .menu-toggle:hover {
   background-color: #8d5b4c;
   color: #ffffff;
 }
-
 .menu-toggle:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 2px;
 }
+@media (min-width: 48rem) {
+  .menu-toggle {
+    display: none;
+  }
+}
 
-/* Мобільна навігація: за замовчуванням схована */
 .main-nav {
   display: none;
   flex-direction: column;
@@ -98,17 +95,10 @@ textarea {
   gap: 12px;
   width: 100%;
 }
-
-/* Стан відкритого меню на мобільних пристроях */
 .main-nav.is-open {
   display: flex;
 }
-
 @media (min-width: 48rem) {
-  .menu-toggle {
-    display: none;
-  }
-
   .main-nav {
     display: flex !important;
     flex-direction: row;
@@ -118,7 +108,6 @@ textarea {
     width: auto;
   }
 }
-
 .main-nav .nav-link {
   color: #2b2320;
   text-decoration: none;
@@ -127,23 +116,19 @@ textarea {
   border-radius: 6px;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
 .main-nav .nav-link:hover {
   color: #8d5b4c;
   background-color: #fbf9f6;
 }
-
 .main-nav .nav-link:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 2px;
 }
 
-/* 3. Секції та кнопки дії */
 .section {
   padding-top: 32px;
   padding-bottom: 32px;
 }
-
 @media (min-width: 48rem) {
   .section {
     padding-top: 48px;
@@ -157,7 +142,6 @@ textarea {
   margin-bottom: 16px;
   color: #8d5b4c;
 }
-
 @media (min-width: 48rem) {
   .section-title {
     font-size: 1.8rem;
@@ -183,28 +167,23 @@ textarea {
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
-
 .button:hover {
   background-color: #6f4235;
 }
-
 .button:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 2px;
 }
-
 .button:active {
   transform: translateY(1px);
 }
-
 .button-secondary {
   background-color: #e8e2dc;
   color: #2b2320;
   margin-right: 8px;
 }
-
 .button-secondary:hover {
-  background-color: #dcd4cc;
+  background-color: rgb(87.0148749155%, 83.6274509804%, 80.2400270453%);
 }
 
 .about-actions {
@@ -215,7 +194,6 @@ textarea {
   margin-bottom: 16px;
 }
 
-/* Клас стану для приховування та показу контенту */
 .is-hidden {
   display: none !important;
 }
@@ -227,7 +205,6 @@ textarea {
   border-radius: 6px;
   margin-bottom: 16px;
 }
-
 .extra-details p:last-child {
   margin-bottom: 0;
 }
@@ -236,14 +213,12 @@ textarea {
   margin-block: 24px;
 }
 
-/* 4. Картки меню та стан обраного */
 .cards-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
   margin-top: 16px;
 }
-
 @media (min-width: 48rem) {
   .cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -258,35 +233,29 @@ textarea {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
-
-.card-header {
+.card .card-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 8px;
 }
-
 .card .card-title {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 1.25rem;
   color: #8d5b4c;
 }
-
 .card .card-text {
   margin: 0;
   color: #5e5b53;
   font-size: 0.95rem;
 }
-
-/* Кнопка "В обране" */
-.favorite-button {
+.card .favorite-button {
   background-color: #fbf9f6;
   border: 1px solid #8d5b4c;
   color: #8d5b4c;
@@ -298,24 +267,18 @@ textarea {
   white-space: nowrap;
   transition: all 0.2s ease;
 }
-
-.favorite-button:hover {
+.card .favorite-button:hover {
   background-color: #e8e2dc;
 }
-
-.favorite-button:focus-visible {
+.card .favorite-button:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 2px;
 }
-
-/* Стан активної кнопки "В обране" */
-.favorite-button.is-active {
+.card .favorite-button.is-active {
   background-color: #8d5b4c;
   color: #ffffff;
   border-color: #8d5b4c;
 }
-
-/* Підсвічування картки в обраному */
 .card:has(.favorite-button.is-active) {
   border-color: #8d5b4c;
   box-shadow: 0 4px 10px rgba(141, 91, 76, 0.15);
@@ -325,7 +288,6 @@ textarea {
   margin-top: 32px;
 }
 
-/* 5. Форма онлайн-бронювання */
 .booking-section {
   border-top: 1px solid #e8e2dc;
 }
@@ -336,18 +298,15 @@ textarea {
   max-width: 560px;
   margin-top: 1.25rem;
 }
-
 .booking-form .form-field {
   display: grid;
   gap: 0.4rem;
 }
-
 .booking-form .form-field label {
   font-weight: 600;
   font-size: 0.95rem;
   color: #2b2320;
 }
-
 .booking-form .form-field input,
 .booking-form .form-field select,
 .booking-form .form-field textarea {
@@ -358,28 +317,23 @@ textarea {
   background-color: #ffffff;
   color: #2b2320;
 }
-
 .booking-form .form-field input:focus-visible,
 .booking-form .form-field select:focus-visible,
 .booking-form .form-field textarea:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 1px;
 }
-
 .booking-form .form-field input:focus:invalid,
 .booking-form .form-field select:focus:invalid,
 .booking-form .form-field textarea:focus:invalid {
   border-color: #dc2626;
 }
-
 .booking-form .form-field textarea {
   resize: vertical;
 }
-
 .booking-form .submit-btn {
   width: 100%;
 }
-
 @media (min-width: 48rem) {
   .booking-form .submit-btn {
     width: auto;
@@ -387,23 +341,19 @@ textarea {
   }
 }
 
-/* 6. Контакти та підвал */
 .contacts-card {
   background-color: #ffffff;
   border: 1px solid #e8e2dc;
   border-radius: 12px;
   padding: 24px;
 }
-
 .contacts-card .contact-item {
   margin: 8px 0;
 }
-
 .contacts-card .contact-link {
   color: #8d5b4c;
   text-decoration: underline;
 }
-
 .contacts-card .contact-link:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
@@ -419,44 +369,68 @@ textarea {
 }
 
 /* ==========================================
-   Стилі для Лабораторної роботи № 6
+   Стилі для Лабораторної роботи № 8
    ========================================== */
+.user-wishes-section {
+  border-top: 1px solid #e8e2dc;
+}
 
-.catalog-controls {
+.subsection-title {
+  font-size: 1.3rem;
+  color: #8d5b4c;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.user-status-message {
+  min-height: 1.5em;
+  margin-top: 12px;
+  font-weight: 600;
+  color: #8d5b4c;
+}
+
+.user-card {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.5rem;
-  margin: 1.5rem 0 1rem;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.catalog-controls label {
+.user-card-category {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: #f3eee9;
+  color: #8d5b4c;
+  font-size: 0.8rem;
   font-weight: 600;
-  font-size: 0.95rem;
+  padding: 3px 10px;
+  border-radius: 999px;
 }
 
-.catalog-controls input,
-.catalog-controls select {
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  min-width: 220px;
-}
-
-#results-count {
+.delete-button {
+  background-color: #fbf9f6;
+  border: 1px solid #dc2626;
+  color: #dc2626;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 1.2rem;
-  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-#empty-message {
-  text-align: center;
-  font-size: 1.15rem;
-  color: #777;
-  padding: 2.5rem 1rem;
+.delete-button:hover {
+  background-color: #dc2626;
+  color: #ffffff;
 }
 
-[hidden] {
-  display: none !important;
+.delete-button:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.empty-state {
+  color: #5e5b53;
+  font-style: italic;
+  margin-top: 12px;
 }

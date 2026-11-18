@@ -26,6 +26,7 @@
             <nav id="main-navigation" class="main-nav" aria-label="Головна навігація">
                 <a class="nav-link" href="#about">Про нас</a>
                 <a class="nav-link" href="#services">Послуги та меню</a>
+                <a class="nav-link" href="#user-wishes">Побажання та рецепти</a>
                 <a class="nav-link" href="#booking">Бронювання</a>
                 <a class="nav-link" href="#contacts">Контакти</a>
             </nav>
@@ -124,6 +125,61 @@
                 <div class="image-wrapper">
                     <img src="images/cup of coffee.png" alt="Чашка свіжоприготованої кави на дерев'яному столі">
                 </div>
+            </div>
+        </section>
+        <section id="user-wishes" class="section user-wishes-section">
+            <div class="container">
+                <h2 class="section-title">Побажання та рецепти гостей</h2>
+                <p class="section-text">
+                    Поділіться ідеєю нового авторського напою, рецептом чи побажанням до нашого меню. 
+                    Ваші нотатки збережуться у браузері.
+                </p>
+
+                <form id="user-item-form" class="booking-form" novalidate>
+                    <div class="form-field">
+                        <label for="user-title">Назва напою або побажання</label>
+                        <input 
+                            id="user-title" 
+                            name="title" 
+                            type="text" 
+                            required 
+                            minlength="3" 
+                            maxlength="80" 
+                            placeholder="Наприклад: Лавандовий раф на мигдалевому молоці"
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="user-category">Категорія</label>
+                        <select id="user-category" name="category" required>
+                            <option value="">Оберіть категорію</option>
+                            <option value="coffee">Кавовий рецепт</option>
+                            <option value="tea">Чай та авторські мікси</option>
+                            <option value="dessert">Десерт або побажання</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="user-description">Опис або рецепт</label>
+                        <textarea 
+                            id="user-description" 
+                            name="description" 
+                            rows="4" 
+                            required 
+                            minlength="10" 
+                            maxlength="500" 
+                            placeholder="Опишіть інгредієнти, спосіб приготування або ваше побажання (мінімум 10 символів)"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="button submit-btn">Додати</button>
+                </form>
+
+                <p id="user-message" role="status" class="user-status-message"></p>
+
+                <h3 class="subsection-title">Мої рецепти та побажання</h3>
+                <div id="user-list" class="cards-grid"></div>
+                <p id="user-empty" class="empty-state">Власних записів поки немає.</p>
             </div>
         </section>
 
