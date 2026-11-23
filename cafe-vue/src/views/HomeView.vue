@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useMenuStore } from "../stores/menu.js";
 import MenuList from "../components/MenuList.vue";
 import UserWishForm from "../components/UserWishForm.vue";
@@ -11,6 +11,10 @@ const query = ref("");
 const category = ref("all");
 const userItems = ref([]);
 const statusMessage = ref("");
+
+onMounted(() => {
+  store.loadItems();
+});
 
 const filteredMenu = computed(() => {
   const text = query.value.trim().toLowerCase();
@@ -92,8 +96,8 @@ function deleteUserItem(id) {
         <label for="category-filter">Категорія</label>
         <select id="category-filter" v-model="category">
           <option value="all">Усі</option>
-          <option value="coffee">Кава</option>
-          <option value="tea">Чай та авторські мікси</option>
+          <option value="coffee">Класична гаряча кава</option>
+          <option value="tea">Холодна кава та авторські мікси</option>
           <option value="pastry">Пекарня та десерти</option>
         </select>
 
@@ -107,12 +111,27 @@ function deleteUserItem(id) {
         </button>
       </div>
 
-      <p id="results-count" aria-live="polite">
-        Знайдено позицій: {{ filteredMenu.length }}
+      <p v-if="store.loading" role="status" class="state-box state-loading">
+        Завантаження меню з сервера…
       </p>
 
-      <MenuList v-if="filteredMenu.length > 0" :items="filteredMenu" />
-      <p v-else id="empty-message">Нічого не знайдено.</p>
+      <section v-else-if="store.error" role="alert" class="state-box state-error">
+        <p>{{ store.error }}</p>
+        <button type="button" class="button" @click="store.retry()">
+          Спробувати ще раз
+        </button>
+      </section>
+
+      <p v-else-if="filteredMenu.length === 0" id="empty-message" class="state-box">
+        Нічого не знайдено.
+      </p>
+
+      <template v-else>
+        <p id="results-count" aria-live="polite">
+          Знайдено позицій: {{ filteredMenu.length }}
+        </p>
+        <MenuList :items="filteredMenu" />
+      </template>
 
       <div class="image-wrapper">
         <img

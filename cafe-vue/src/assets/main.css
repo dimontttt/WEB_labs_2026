@@ -511,3 +511,42 @@ textarea {
 .detail-actions {
   margin-top: 20px;
 }
+
+/* ==========================================
+   Стилі для Лабораторної роботи № 11 (API)
+   ========================================== */
+.card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.detail-photo {
+  max-height: 360px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.state-box {
+  margin-top: 16px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e8e2dc;
+}
+
+.state-loading {
+  color: #8d5b4c;
+  font-weight: 600;
+}
+
+.state-error {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.state-error p {
+  margin-top: 0;
+}

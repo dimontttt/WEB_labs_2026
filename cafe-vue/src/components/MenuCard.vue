@@ -16,14 +16,21 @@ const emit = defineEmits(["delete"]);
 const store = useMenuStore();
 
 const CATEGORY_LABELS = {
-  coffee: "Кава",
-  tea: "Чай та авторські мікси",
+  coffee: "Класична гаряча кава",
+  tea: "Холодна кава та авторські мікси",
   pastry: "Пекарня та десерти",
 };
 </script>
 
 <template>
   <article class="card user-card">
+    <img
+      v-if="item.image"
+      :src="item.image"
+      :alt="item.title"
+      class="card-image"
+    />
+
     <div class="card-header">
       <h3 class="card-title">{{ item.title }}</h3>
 
