@@ -1,4 +1,6 @@
 <script setup>
+import { useMenuStore } from "../stores/menu.js";
+
 defineProps({
   item: {
     type: Object,
@@ -11,6 +13,7 @@ defineProps({
 });
 
 const emit = defineEmits(["delete"]);
+const store = useMenuStore();
 
 const CATEGORY_LABELS = {
   coffee: "Кава",
@@ -23,6 +26,7 @@ const CATEGORY_LABELS = {
   <article class="card user-card">
     <div class="card-header">
       <h3 class="card-title">{{ item.title }}</h3>
+
       <button
         v-if="removable"
         type="button"
@@ -31,6 +35,17 @@ const CATEGORY_LABELS = {
       >
         Видалити
       </button>
+
+      <button
+        v-else
+        type="button"
+        class="favorite-button"
+        :class="{ 'is-active': store.isFavorite(item.id) }"
+        :aria-pressed="store.isFavorite(item.id)"
+        @click="store.toggleFavorite(item.id)"
+      >
+        {{ store.isFavorite(item.id) ? "★ В обраному" : "☆ До обраного" }}
+      </button>
     </div>
 
     <span class="card-category">
@@ -38,5 +53,14 @@ const CATEGORY_LABELS = {
     </span>
 
     <p class="card-text">{{ item.description }}</p>
+
+    <div v-if="!removable" class="card-footer-actions">
+      <RouterLink
+        :to="{ name: 'detail', params: { id: item.id } }"
+        class="detail-link"
+      >
+        Докладніше &rarr;
+      </RouterLink>
+    </div>
   </article>
 </template>
